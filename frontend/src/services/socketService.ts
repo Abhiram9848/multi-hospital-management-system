@@ -1,5 +1,4 @@
 import { io, Socket } from 'socket.io-client';
-import { SOCKET_URL } from '../config/api';
 
 class SocketService {
   private socket: Socket | null = null;
@@ -17,7 +16,7 @@ class SocketService {
   public connect(userId: string, userRole: string, userName: string): void {
     if (!this.socket || this.socket.disconnected) {
       console.log('=== CREATING NEW SOCKET CONNECTION ===');
-      this.socket = io(SOCKET_URL);
+      this.socket = io('http://localhost:5000');
       
       this.socket.on('connect', () => {
         console.log('Connected to server with socket ID:', this.socket?.id);
